@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="index">
+    <form method="post" action='@Url.Action("LogIn", "Home")'>
+        @if (ViewBag.mensaje != null)
+        {
+            <h2>@ViewBag.mensaje</h2>
+        }
+        <input type="text" name="nombre" placeholder="Nombre de usuario" autocomplete="off"><br>
+        <input type="password" name="contraIntentada" placeholder="Contraseña"><br>
+        <button type="submit">Iniciar Sesión</button><br>
+        <a href='@Url.Action("OlvideContra", "Home")'>Olvidé mi contraseña</a><br>
+        <a href='@Url.Action("SignIn", "Home")'>No tengo una cuenta creada</a>
+    </form>
+</div>

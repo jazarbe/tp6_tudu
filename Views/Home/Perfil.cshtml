@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Perfil";
+}
+@* nuevo atributo: foto + grupo --> muestra los integrantes*@
+
+<div class="perfil">
+    <h1>Nombre: @ViewBag.nombre</h1>
+    <h1>Email: @ViewBag.email</h1>
+    <h1>Fecha de nacimiento: @ViewBag.fechaNac.ToShortDateString()</h1>
+    <h1>Teléfono: @ViewBag.telefono</h1>
+    <h1>Dirección: @ViewBag.direccion</h1> 
+    <h1>Rol: @ViewBag.rol</h1>
+
+    <!-- <h1>Integrantes de tu grupo:</h1>
+    <ul>
+    @foreach(var integrante in (List<Usuario>)ViewBag.integrantesGrupo)
+    {
+        <li>- @integrante.nombre</li>
+    }
+    </ul> -->
+    
+    <form action='@Url.Action("LogOut", "Home")' method="post">
+        <button type="submit">Cerrar sesión</button>
+    </form>
+</div>

@@ -1,0 +1,19 @@
+@{
+    ViewBag.Title = "SignIn";
+}
+
+<div class="extra">
+    <h1>Sign In</h1>
+    <form action='@Url.Action("CrearCuenta", "Home")' method="post" enctype="multipart/form-data">
+        <input type="text" name="nombre" placeholder="Nombre de usuario" autocomplete="off" required/><br>
+        <input type="password" name="contra" placeholder="Contraseña" required/><br>
+        <input type="email" name="email" placeholder="Email" autocomplete="off" required/><br>
+        <input type="date" name="fechaNac" placeholder="Fecha de Nacimiento" autocomplete="off" required/><br>
+        <input type="text" name="telefono" placeholder="Nro de Teléfono" autocomplete="off" required/><br>
+        <input type="text" name="direccion" placeholder="Dirección" autocomplete="off" required/><br>
+        <input type="text" name="rol" placeholder="Rol" autocomplete="off" required/><br>
+        <input type="file" name="foto" placeholder="Foto de perfil (opcional)" accept="image/*"/><br>
+        <input type="number" name="idGrupo" min="1" max="2" placeholder="Id del grupo" autocomplete="off" required/><br>
+        <button type="submit">Crear cuenta</button>
+    </form>
+</div>

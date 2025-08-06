@@ -1,0 +1,136 @@
+html {
+  margin: 0;
+  --color1: #002a46;
+  --color2: #a7d0cb;
+  --color3: #bdf4d7;
+  --color4: #676767;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--color3);
+  color: var(--color1);
+}
+
+h2, form{
+  margin: 1%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1%;
+  position: relative;
+}
+
+header img {
+  position: absolute;
+  top: 5%;
+  left: 44%;
+  /* height: 15em; */
+  background-color: whitesmoke;
+  border: 3px solid var(--color1); 
+  border-radius: 10px;
+}
+
+header div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  font-size: 18px;
+}
+
+header div svg, header div img{
+  position: inherit;
+  height: 4em;
+  width: auto;
+  stroke-width: 2;
+}
+
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  margin-top: 2%;
+  margin-left: 30%;
+  font-weight: lighter;
+  background-color: whitesmoke;
+  border: 3px solid var(--color1);
+  border-radius: 20px;
+}
+
+main form{
+  font-size: 3rem;
+  text-align: center;
+  width: 100%;
+}
+
+main form a {
+  font-size: 1.5rem;
+  color: var(--color4);
+}
+
+main h2{
+  font-size: 2ex;
+  text-align: center;
+  color: rgb(161, 3, 3);
+}
+
+main ul li, main ul{
+  font-weight: 600;
+  display: inline;
+  margin-top: 0%
+}
+
+main input{
+  font-size: 1ex;
+  text-align: center;
+  padding: 0.5%;
+  border: 2px solid var(--color1);
+  border-radius: 5px;
+  color: var(--color1);
+}
+
+button[type="submit"]{
+  font-size: 1.3rem;
+  color: var(--color1);
+  border: 2px solid var(--color1);
+  border-radius: 5px;
+  background-color: var(--color3);
+}
+
+form input:hover, button[type="submit"]:hover{
+  box-shadow: 1px 5px 20px var(--color3);
+  transition: all 0.5s ease;
+}
+
+.perfil{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.extra{
+  display: flex;
+  flex-direction: column;
+  padding: 3%
+}
+
+.extra h1{
+  margin: 0%;
+}
+
+.extra input[type="number"]{
+  width: 30%;
+}
