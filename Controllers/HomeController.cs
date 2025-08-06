@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using tpNoNum.Models;
+using tp6_tudu.Models;
 
-namespace tpNoNum.Controllers;
+namespace tp6_tudu.Controllers;
 
 public class HomeController : Controller
 {
@@ -19,15 +19,15 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult LogIn(string nombre, string contraIntentada){
+    public IActionResult LogIn(string nombre, string passwordIntentada){
         BD miBd = new BD();
         Usuario intentoIntegrante = miBd.BuscarUsuarioPorUsername(nombre);
         if(intentoIntegrante == null){
             ViewBag.mensaje = "Nombre de usuario inexistente";
             return View("Index");
         }
-        else if(contraIntentada != intentoIntegrante.contra){
-            ViewBag.mensaje = "Contraseña incorrecta";
+        else if(passwordIntentada != intentoIntegrante.password){
+            ViewBag.mensaje = "contraseña incorrecta";
             return View("Index");
         }
         else{
@@ -56,33 +56,28 @@ public class HomeController : Controller
         Usuario intentoIntegrante = miBd.BuscarUsuarioPorId(idUsuario.Value);
 
         ViewBag.nombre = intentoIntegrante.nombre;
-        ViewBag.contra = intentoIntegrante.contra; 
-        ViewBag.email = intentoIntegrante.email;
-        ViewBag.fechaNac = intentoIntegrante.fechaNac;
-        ViewBag.telefono = intentoIntegrante.telefono;
-        ViewBag.direccion = intentoIntegrante.direccion;
-        ViewBag.rol = intentoIntegrante.rol;
-        // List<Usuario> integrantesGrupo = miBd.ObtenerIntegrantesPorGrupo(intentoIntegrante.idGrupo);
-        // ViewBag.integrantesGrupo = integrantesGrupo;
+        ViewBag.password = intentoIntegrante.password;
+        ViewBag.fecha = intentoIntegrante.ultimoLogin;
+        // List<Usuario> integrantesGrupo = miBd.ObtenerIntegrantesPorGrupo(intentoIntegrante.idUsuario);
         
         return View();
     }
-    public IActionResult OlvideContra()
+    public IActionResult OlvidePassword()
     {
         return View();
     }
 
-    public IActionResult CambiarContra(string nombre, string nuevaContra)
+    public IActionResult CambiarPassword(string nombre, string nuevapassword)
     {
         BD miBd = new BD();
         Usuario integrante = miBd.BuscarUsuarioPorUsername(nombre);
         if (integrante == null)
         {
             ViewBag.mensaje = "El usuario no existe";
-            return View("OlvideContrasenia");
+            return View("OlvidePassword");
         }
 
-        miBd.CambiarContra(nombre, nuevaContra);
+        miBd.Cambiarpassword(nombre, nuevapassword);
 
         ViewBag.mensaje = "Contraseña cambiada correctamente";
         return View("Index");
@@ -91,7 +86,7 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult CrearCuenta(string nombre, string contra, string email, DateTime fechaNac, string telefono, string direccion, string rol, IFormFile foto, int idGrupo)
+    public IActionResult CrearCuenta(string nombre, string password, string username, DateTime fecha, IFormFile foto, int idUuario)
     {
         BD miBd = new BD();
 
@@ -115,7 +110,7 @@ public class HomeController : Controller
             }
         }
 
-        miBd.AgregarUsuario(nombre, contra, email, fechaNac, telefono, direccion, rol, nombreArchivo, idGrupo);
+        miBd.AgregarUsuario(nombre, password, username, fecha, nombreArchivo, idUsuario);
 
         ViewBag.mensaje = "Cuenta creada correctamente.";
         return View("Index");

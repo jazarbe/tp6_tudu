@@ -1,4 +1,4 @@
-namespace tpNoNum.Models;
+namespace tp6_tudu.Models;
 
 public class ErrorViewModel
 {

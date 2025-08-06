@@ -9,9 +9,9 @@
             <h2>@ViewBag.mensaje</h2>
         }
         <input type="text" name="nombre" placeholder="Nombre de usuario" autocomplete="off"><br>
-        <input type="password" name="contraIntentada" placeholder="Contraseña"><br>
+        <input type="password" name="passwordIntentada" placeholder="contraseña"><br>
         <button type="submit">Iniciar Sesión</button><br>
-        <a href='@Url.Action("OlvideContra", "Home")'>Olvidé mi contraseña</a><br>
+        <a href='@Url.Action("Olvidepassword", "Home")'>Olvidé mi contraseña</a><br>
         <a href='@Url.Action("SignIn", "Home")'>No tengo una cuenta creada</a>
     </form>
 </div>
