@@ -19,7 +19,7 @@ public class HomeController : Controller
         return View();
     }
     
-    public IActionResult VerTasks(int idSolicitado)
+    public IActionResult Tasks(int idSolicitado)
     {
         int? idUsuarioInSession = HttpContext.Session.GetInt32("usuarioId");
         if (idUsuarioInSession == null)
@@ -39,27 +39,27 @@ public class HomeController : Controller
 
         miBd.AgregarTarea(titulo, descripcion, fecha, finalizada, idUsuarioInSession.Value);
 
-        return View("VerTasks");
+        return View("Tasks");
     }
 
     public IActionResult EditarTarea(Tarea tarea, string titulo, string descripcion, DateTime fecha, bool finalizada){
         BD miBd = new BD();
         miBd.UpdateTarea(tarea, titulo, descripcion, fecha, finalizada);
 
-        return View("VerTasks");
+        return View("Tasks");
     }
 
     public IActionResult EliminarTarea(Tarea tarea){
         BD miBd = new BD();
         miBd.DeleteTarea(tarea);
 
-        return View("VerTasks");
+        return View("Tasks");
     }
 
     public IActionResult FinalizarTarea(int id){
         BD miBd = new BD();
         miBd.FinalizarTarea(id);
 
-        return View("VerTasks");
+        return View("Tasks");
     }
 }

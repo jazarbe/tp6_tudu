@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Tareas";
+}
+
+<section>   
+    @foreach(Tarea tarea in ViewBag.tareasUsuario){
+        <div>
+            <h1>@tarea.titulo</h1>
+            <p>@tarea.descripcion</p>
+            <span>@tarea.fecha</span>
+        </div>
+    }
+<section>

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Log in";
 }
 
 <div class="index">
@@ -8,10 +8,10 @@
         {
             <h2>@ViewBag.mensaje</h2>
         }
-        <input type="text" name="nombre" placeholder="Nombre de usuario" autocomplete="off"><br>
+        <input type="text" name="username" placeholder="Nombre de usuario" autocomplete="off"><br>
         <input type="password" name="passwordIntentada" placeholder="contraseña"><br>
         <button type="submit">Iniciar Sesión</button><br>
-        <a href='@Url.Action("Olvidepassword", "Account")'>Olvidé mi contraseña</a><br>
+        <a href='@Url.Action("OlvidePassword", "Account")'>Olvidé mi contraseña</a><br>
         <a href='@Url.Action("SignUp", "Account")'>No tengo una cuenta creada</a>
     </form>
 </div>

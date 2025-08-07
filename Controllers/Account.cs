@@ -13,16 +13,16 @@ public class Account  : Controller
         _logger = logger;
     }
 
-    public IActionResult LogIn(string nombre, string passwordIntentada){
+    public IActionResult LogIn(string username, string passwordIntentada){
         BD miBd = new BD();
-        Usuario intentoIntegrante = miBd.BuscarUsuarioPorUsername(nombre);
+        Usuario intentoIntegrante = miBd.BuscarUsuarioPorUsername(username);
         if(intentoIntegrante == null){
             ViewBag.mensaje = "Nombre de usuario inexistente";
             return View("Index");
         }
         else if(passwordIntentada != intentoIntegrante.password){
             ViewBag.mensaje = "contraseña incorrecta";
-            return View("Index");
+            return RedirectToAction("Index");
         }
         else{
             string rutaFoto = "/images/default.png";
@@ -30,7 +30,9 @@ public class Account  : Controller
             HttpContext.Session.SetString("fotoPerfil", rutaFoto);
             HttpContext.Session.SetInt32("usuarioId", intentoIntegrante.id);
             miBd.ActualizarLogin(intentoIntegrante.id);
-            return RedirectToAction("VerTasks", "Home", new { idSolicitado = intentoIntegrante.id });
+
+
+            return RedirectToAction("Tasks", "Home", new { idSolicitado = intentoIntegrante.id });
         }
     }
 
@@ -90,6 +92,6 @@ public class Account  : Controller
         miBd.AgregarUsuario(nombre, apellido, password, username, nombreArchivo);
 
         ViewBag.mensaje = "Cuenta creada correctamente.";
-        return View("Index");
+        return RedirectToAction("Index", "Home");
     }
 }
