@@ -19,11 +19,47 @@ public class HomeController : Controller
         return View();
     }
     
-    public IActionResult Tasks(int idSolicitado)
+    public IActionResult VerTasks(int idSolicitado)
     {
-        BD miBd = new BD();
-        ViewBag.tareasUsuario = miBd.ConseguirTareasDeUsuario(idSolicitado)
-        return View();
+        int? idUsuarioInSession = HttpContext.Session.GetInt32("usuarioId");
+        if (idUsuarioInSession == null)
+        {
+            return RedirectToAction("Index");
+        } else {
+            BD miBd = new BD();
+            ViewBag.tareasUsuario = miBd.ConseguirTareasDeUsuario(idSolicitado);
+            return View();
+        }
     }
     
+    public IActionResult CrearTarea(string titulo, string descripcion, DateTime fecha){
+        BD miBd = new BD();
+        bool finalizada = false;
+        int? idUsuarioInSession = HttpContext.Session.GetInt32("usuarioId");
+
+        miBd.AgregarTarea(titulo, descripcion, fecha, finalizada, idUsuarioInSession.Value);
+
+        return View("VerTasks");
+    }
+
+    public IActionResult EditarTarea(Tarea tarea, string titulo, string descripcion, DateTime fecha, bool finalizada){
+        BD miBd = new BD();
+        miBd.UpdateTarea(tarea, titulo, descripcion, fecha, finalizada);
+
+        return View("VerTasks");
+    }
+
+    public IActionResult EliminarTarea(Tarea tarea){
+        BD miBd = new BD();
+        miBd.DeleteTarea(tarea);
+
+        return View("VerTasks");
+    }
+
+    public IActionResult FinalizarTarea(int id){
+        BD miBd = new BD();
+        miBd.FinalizarTarea(id);
+
+        return View("VerTasks");
+    }
 }

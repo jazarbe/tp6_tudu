@@ -7,6 +7,13 @@ namespace tp6_tudu.Models;
 public class BD{
     private static string _connectionString = @"Server=localhost;DataBase=bd;Integrated Security=True;TrustServerCertificate=True;";
     public BD(){}
+
+    public void ActualizarLogin(int idUsuario){
+        using(SqlConnection connection = new SqlConnection(_connectionString)){
+            string query = "UPDATE Usuarios SET ultimoLogin = @pUltimoLogin WHERE id = @pIdUsuario";
+            connection.QueryFirstOrDefault<Usuario>(query, new {pUltimoLogin = DateTime.Now});
+        }
+    }
     public List<Tarea> ConseguirTareasDeUsuario(int idBuscado){
         List<Tarea> tareas = new List<Tarea>();
         using(SqlConnection connection = new SqlConnection(_connectionString)){
@@ -23,7 +30,7 @@ public class BD{
         }
         return tareaBuscada;
     }
-    public void UpdateTarea(Tarea tareaBuscada){
+    public void UpdateTarea(Tarea tareaBuscada, string titulo, string descripcion, DateTime fecha, bool finalizada){
         int idBuscado = tareaBuscada.id;
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             string query = "UPDATE Tareas SET titulo = @ptitulo, descripcion = @pdescripcion, fecha = @pfecha, finalizada = @pfinalizada WHERE id = @pIdBuscado";
@@ -68,7 +75,7 @@ public class BD{
             connection.Execute(query, new { pNuevapassword = nuevapassword, pNombre = nombre });
         }
     }
-    public void AgregarUsuario(string nombre, string password, string username, DateTime ulitmoLogin, string foto)
+    public void AgregarUsuario(string nombre, string apellido, string password, string username, string foto)
     {
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
@@ -76,12 +83,13 @@ public class BD{
                 INSERT INTO Usuarios 
                 (nombre, apellido, password, username, ultimoLogin, foto)
                 VALUES 
-                (@pNombre, @pPassword, @pusername, @pultimoLogin, @pFoto)";
+                (@pNombre, @pApellido, @pPassword, @pusername, @pultimoLogin, @pFoto)";
             
             connection.Execute(query, new 
-            {pNombre = nombre, ppassword = password, pusername = username, pulitmoLogin = ulitmoLogin, pFoto = foto});
+            {pNombre = nombre, pApellido = apellido, pPassword = password, pUsername = username, pFoto = foto});
         }
     }
+
     public void AgregarTarea(string titulo, string descripcion, DateTime fecha, bool finalizada, int idUsuario)
     {
         using(SqlConnection connection = new SqlConnection(_connectionString))

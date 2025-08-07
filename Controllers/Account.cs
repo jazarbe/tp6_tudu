@@ -28,10 +28,12 @@ public class Account  : Controller
             string rutaFoto = "/images/default.png";
             rutaFoto = "/images/" + intentoIntegrante.foto;
             HttpContext.Session.SetString("fotoPerfil", rutaFoto);
-            // HttpContext.Session.SetInt32("usuarioId", intentoIntegrante.id);
-            return RedirectToAction("Tasks", "Home", new { idSolicitado = intentoIntegrante.id });
+            HttpContext.Session.SetInt32("usuarioId", intentoIntegrante.id);
+            miBd.ActualizarLogin(intentoIntegrante.id);
+            return RedirectToAction("VerTasks", "Home", new { idSolicitado = intentoIntegrante.id });
         }
     }
+
     public IActionResult LogOut()
     {
         HttpContext.Session.Clear();
@@ -57,18 +59,18 @@ public class Account  : Controller
         ViewBag.mensaje = "Contraseña cambiada correctamente";
         return View("Index");
     }
-    public IActionResult SignIn()
+    public IActionResult SignUp()
     {
         return View();
     }
-    public IActionResult CrearCuenta(string nombre, string password, string username, DateTime fecha, IFormFile foto, int idUsuario)
+    public IActionResult CrearCuenta(string nombre, string apellido, string password, string username, DateTime fecha, IFormFile foto, int idUsuario)
     {
         BD miBd = new BD();
 
         if (miBd.BuscarUsuarioPorUsername(nombre) != null)
         {
             ViewBag.mensaje = "El nombre de usuario ya existe.";
-            return View("Registro");
+            return View("SignUp");
         }
 
         string nombreArchivo = "default.png";
@@ -85,7 +87,7 @@ public class Account  : Controller
             }
         }
 
-        miBd.AgregarUsuario(nombre, password, username, fecha, nombreArchivo, idUsuario);
+        miBd.AgregarUsuario(nombre, apellido, password, username, nombreArchivo);
 
         ViewBag.mensaje = "Cuenta creada correctamente.";
         return View("Index");

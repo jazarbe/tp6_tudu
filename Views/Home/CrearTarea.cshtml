@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "New Task";
+}
+
+<div class="extra">
+    <h1>Creá una nueva tarea</h1>
+    <form action='@Url.Action("CrearTarea", "Home")' method="post" enctype="multipart/form-data">
+        <input type="text" name="titulo" placeholder="Título" autocomplete="off" required/><br>
+        <textarea name="descripcion" placeholder="Descripción de la tarea" autocomplete="off" required></textarea><br>
+        <input type="date" name="fecha" placeholder="Fecha límite" autocomplete="off" required/><br>
+        <button type="submit">Crear tarea</button>
+    </form>
+</div>
