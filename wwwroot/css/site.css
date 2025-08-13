@@ -49,6 +49,14 @@ header div {
   display: flex;
   align-items: center;
   gap: 10px;
+  justify-content: flex-start;
+  font-size: 18px;
+}
+
+header .foto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-left: auto;
   font-size: 18px;
 }

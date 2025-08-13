@@ -55,7 +55,7 @@ public class Account  : Controller
             ViewBag.mensaje = "El usuario no existe";
             return View("OlvidePassword");
         }
-
+        
         miBd.CambiarPassword(username, nuevapassword);
 
         ViewBag.mensaje = "Contraseña cambiada correctamente";
