@@ -3,13 +3,28 @@
 }
 
 <div class="extra">
-    <h1>Sign Up</h1>
     <form action='@Url.Action("CrearCuenta", "Account")' method="post" enctype="multipart/form-data">
-        <input type="text" name="nombre" placeholder="Nombre" autocomplete="off" required/><br>
-        <input type="text" name="apellido" placeholder="Apellido" autocomplete="off" required/><br>
-        <input type="password" name="password" placeholder="Contraseña" required/><br>
-        <input type="text" name="username" placeholder="Username" autocomplete="off" required/><br>
-        <input type="file" name="foto" placeholder="Foto de perfil (opcional)" accept="image/*"/><br>
+    <h1>Sign Up</h1>
+        <div class="campo">
+        <label>Nombre</label>
+        <input type="text" name="nombre" placeholder="Nombre" autocomplete="off" required/>
+        </div>
+        <div class="campo">
+        <label>Apellido</label>
+        <input type="text" name="apellido" placeholder="Apellido" autocomplete="off" required/>
+        </div>
+        <div class="campo">
+        <label>Contraseña</label>
+        <input type="password" name="password" placeholder="Contraseña" required/>
+       </div>
+        <div class="campo">
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Username" autocomplete="off" required/>
+        </div>
+        <div class="campo">
+        <label>Foto de Perfil</label>
+        <input type="file" name="foto" placeholder="Foto de perfil (opcional)" accept="image/*"/>
+        </div>
         <button type="submit">Crear cuenta</button>
         <a class="volverBtn" href='@Url.Action("Index", "Home")'>Volver</a>
     </form>
