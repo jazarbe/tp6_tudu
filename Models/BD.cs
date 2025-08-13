@@ -67,12 +67,12 @@ public class BD{
         }
         return usuarioBuscado;
     }
-    public void CambiarPassword(string nombre, string nuevapassword)
+    public void CambiarPassword(string username, string nuevapassword)
     {
         using(SqlConnection connection = new SqlConnection(_connectionString))
         {
-            string query = "UPDATE Usuarios SET password = @pNuevapassword WHERE nombre = @pNombre";
-            connection.Execute(query, new { pNuevapassword = nuevapassword, pNombre = nombre });
+            string query = "UPDATE Usuarios SET password = @pNuevapassword WHERE username = @pUsername";
+            connection.Execute(query, new { pNuevapassword = nuevapassword, pUsername = username });
         }
     }
     public void AgregarUsuario(string nombre, string apellido, string password, string username, string foto)

@@ -46,17 +46,17 @@ public class Account  : Controller
         return View();
     }
 
-    public IActionResult CambiarPassword(string nombre, string nuevapassword)
+    public IActionResult CambiarPassword(string username, string nuevapassword)
     {
         BD miBd = new BD();
-        Usuario integrante = miBd.BuscarUsuarioPorUsername(nombre);
+        Usuario integrante = miBd.BuscarUsuarioPorUsername(username);
         if (integrante == null)
         {
             ViewBag.mensaje = "El usuario no existe";
             return View("OlvidePassword");
         }
 
-        miBd.CambiarPassword(nombre, nuevapassword);
+        miBd.CambiarPassword(username, nuevapassword);
 
         ViewBag.mensaje = "Contraseña cambiada correctamente";
         return View("Index");
@@ -69,7 +69,7 @@ public class Account  : Controller
     {
         BD miBd = new BD();
 
-        if (miBd.BuscarUsuarioPorUsername(nombre) != null)
+        if (miBd.BuscarUsuarioPorUsername(username) != null)
         {
             ViewBag.mensaje = "El nombre de usuario ya existe.";
             return View("SignUp");
