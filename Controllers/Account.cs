@@ -15,14 +15,15 @@ public class Account  : Controller
 
     public IActionResult LogIn(string username, string passwordIntentada){
         BD miBd = new BD();
+        string msg = null;
         Usuario intentoIntegrante = miBd.BuscarUsuarioPorUsername(username);
         if(intentoIntegrante == null){
-            ViewBag.mensaje = "Nombre de usuario inexistente";
-            return View("Index");
+            msg = "Nombre de usuario inexistente";
+            return RedirectToAction("Index", "Home", new {mensaje = msg});
         }
         else if(passwordIntentada != intentoIntegrante.password){
-            ViewBag.mensaje = "contraseña incorrecta";
-            return RedirectToAction("Index");
+            msg = "Contraseña incorrecta";
+            return RedirectToAction("Index", "Home", new {mensaje = msg});
         }
         else{
             string rutaFoto = "/images/default.png";
@@ -59,7 +60,7 @@ public class Account  : Controller
         miBd.CambiarPassword(username, nuevapassword);
 
         ViewBag.mensaje = "Contraseña cambiada correctamente";
-        return View("Index");
+        return RedirectToAction("Index", "Home");
     }
     public IActionResult SignUp()
     {

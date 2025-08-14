@@ -13,9 +13,9 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(string mensaje)
     {
-        ViewBag.mensaje = null;
+        ViewBag.mensaje = mensaje;
         HttpContext.Session.Remove("usuarioId");
         return View();
     }
@@ -42,7 +42,7 @@ public class HomeController : Controller
 
         miBd.AgregarTarea(titulo, descripcion, fecha, finalizada, idUsuarioInSession.Value);
 
-        return View("Tasks");
+        return RedirectToAction("Tasks", "Home", new { idSolicitado = idUsuarioInSession.Value});
     }
 
     public IActionResult EditTarea(int id){

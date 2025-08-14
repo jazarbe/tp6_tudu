@@ -2,12 +2,21 @@
     ViewData["Title"] = "Crear tarea";
 }
 
-<div class="extra">
-    <h1>Creá una nueva tarea</h1>
-    <form action='@Url.Action("CrearTarea", "Home")' method="post" enctype="multipart/form-data">
-        <input type="text" name="titulo" placeholder="Título" autocomplete="off" required/><br>
-        <textarea name="descripcion" placeholder="Descripción de la tarea" autocomplete="off" required></textarea><br>
-        <input type="date" name="fecha" placeholder="Fecha límite" autocomplete="off" required/><br>
+<div class="mainCuadrante">
+    <form action='@Url.Action("SendTarea", "Home")' method="post" enctype="multipart/form-data">
+        <h1>Creá una nueva tarea</h1>
+        <div class="campo">
+            <label>Título</label>
+            <input type="text" name="titulo" placeholder="Título" autocomplete="off" required/><br>
+        </div>
+        <div class="campo">
+            <label>Descripción</label>
+            <textarea name="descripcion" placeholder="Descripción de la tarea" autocomplete="off" required style="width: 540px;height: 50px;"></textarea><br>
+        </div>
+        <div class="campo">
+            <label>Fecha límite</label>
+            <input type="date" name="fecha" placeholder="Fecha límite" autocomplete="off" required/><br>
+        </div>
         <button type="submit">Crear tarea</button>
     </form>
 </div>

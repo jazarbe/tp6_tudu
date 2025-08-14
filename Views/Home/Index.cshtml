@@ -5,19 +5,19 @@
     <div class="index">
         <form method="post" action='@Url.Action("LogIn", "Account")'>
             <h1>Login</h1>
+            <div class="campo">
+                <label>Username</label>
+                <input required type="text" name="username" placeholder="Username" autocomplete="off">
+            </div>
+            <div class="campo">
+                <label>Contraseña</label>
+                <input required type="password" name="passwordIntentada" placeholder="Contraseña">
+            </div>
+            <button type="submit">Iniciar Sesión</button>
             @if (ViewBag.mensaje != null)
             {
                 <h2>@ViewBag.mensaje</h2>
             }
-            <div class="campo">
-                <label>Username</label>
-                <input type="text" name="username" placeholder="Username" autocomplete="off">
-            </div>
-            <div class="campo">
-                <label>Contraseña</label>
-                <input type="password" name="passwordIntentada" placeholder="Contraseña">
-            </div>
-            <button type="submit">Iniciar Sesión</button>
             <a href='@Url.Action("OlvidePassword", "Account")'>Olvidé mi contraseña</a>
             <a href='@Url.Action("SignUp", "Account")'>No tengo una cuenta creada</a>
         </form>
