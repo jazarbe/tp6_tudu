@@ -55,7 +55,7 @@ public class HomeController : Controller
         BD miBd = new BD();
         miBd.UpdateTarea(id, titulo, descripcion, fecha, finalizada);
 
-        return View("Tasks");
+        return RedirectToAction("Tasks", new { idSolicitado = id });
     }
 
     public IActionResult EliminarTarea(Tarea tarea){
