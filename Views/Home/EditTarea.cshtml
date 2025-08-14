@@ -2,3 +2,24 @@
     ViewData["Title"] = "Editar tarea";
 }
 
+<section class="mainCuadrante">
+    <div class="extra">
+        <form action='@Url.Action("SendEditTarea", "Home")' method="post" enctype="multipart/form-data">
+        <h1>Editar Tarea</h1>
+            <div class="campo">
+                <label>Titulo</label>
+                <input type="text" name="titulo" value="@ViewBag.tarea.titulo" autocomplete="off" required/>
+            </div>
+            <div class="campo">
+                <label>Descripción</label>
+                <textarea name="descripcion" autocomplete="off" required style="width: 513px;height: 50px;">@ViewBag.tarea.descripcion</textarea>
+            </div>
+            <div class="campo">
+                <label>Fecha</label>
+                <input type="date" name="fecha" value="@ViewBag.tarea.fecha" autocomplete="off" required/>
+            </div>
+            <button type="submit">Confirmar Edición</button>
+            <a class="volverBtn" href='@Url.Action("Index", "Home")'>Volver</a>
+        </form>
+    </div>
+</section>

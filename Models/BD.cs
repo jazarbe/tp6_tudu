@@ -32,8 +32,8 @@ public class BD{
     }
     public void UpdateTarea(int idBuscado, string titulo, string descripcion, DateTime fecha, bool finalizada){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
-            string query = "UPDATE Tareas SET titulo = @ptitulo, descripcion = @pdescripcion, fecha = @pfecha, finalizada = @pfinalizada WHERE id = @pIdBuscado";
-            connection.QueryFirstOrDefault<Tarea>(query, new {pIdBuscado = idBuscado});
+            string query = "UPDATE Tareas SET titulo = @ptitulo, descripcion = @pdescripcion, fecha = @pfecha WHERE id = @pIdBuscado";
+            connection.QueryFirstOrDefault<Tarea>(query, new { pIdBuscado = idBuscado, ptitulo = titulo, pdescripcion = descripcion, pfecha = fecha });
         }
     }
     public void CambiarEstado(int idBuscado){

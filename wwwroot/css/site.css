@@ -138,19 +138,19 @@ form input:hover, button[type="submit"]:hover{
   font-size: 1.2rem;
 }
 
-/* .extra{
+.extra{
   display: flex;
   flex-direction: column;
   padding: 3%
-} */
+}
 
-/* .extra h1{
+.extra h1{
   margin: 0%;
-} */
+}
 
-/* .extra input[type="number"]{
+.extra input[type="number"]{
   width: 30%;
-} */
+}
 
 .volverBtn{
   
