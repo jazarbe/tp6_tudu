@@ -1,24 +1,25 @@
 ﻿@{
     ViewData["Title"] = "Login";
 }
-
-<div class="index">
-    <form method="post" action='@Url.Action("LogIn", "Account")'>
-        <h1>Login</h1>
-        @if (ViewBag.mensaje != null)
-        {
-            <h2>@ViewBag.mensaje</h2>
-        }
-        <div class="campo">
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Username" autocomplete="off">
-        </div>
-        <div class="campo">
-            <label>Contraseña</label>
-            <input type="password" name="passwordIntentada" placeholder="Contraseña">
-        </div>
-        <button type="submit">Iniciar Sesión</button>
-        <a href='@Url.Action("OlvidePassword", "Account")'>Olvidé mi contraseña</a>
-        <a href='@Url.Action("SignUp", "Account")'>No tengo una cuenta creada</a>
-    </form>
-</div>
+<section class="mainCuadrante">
+    <div class="index">
+        <form method="post" action='@Url.Action("LogIn", "Account")'>
+            <h1>Login</h1>
+            @if (ViewBag.mensaje != null)
+            {
+                <h2>@ViewBag.mensaje</h2>
+            }
+            <div class="campo">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Username" autocomplete="off">
+            </div>
+            <div class="campo">
+                <label>Contraseña</label>
+                <input type="password" name="passwordIntentada" placeholder="Contraseña">
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+            <a href='@Url.Action("OlvidePassword", "Account")'>Olvidé mi contraseña</a>
+            <a href='@Url.Action("SignUp", "Account")'>No tengo una cuenta creada</a>
+        </form>
+    </div>
+</section>

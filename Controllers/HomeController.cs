@@ -32,8 +32,10 @@ public class HomeController : Controller
             return View();
         }
     }
-    
-    public IActionResult CrearTarea(string titulo, string descripcion, DateTime fecha){
+    public IActionResult CrearTarea(){
+        return View();
+    }
+    public IActionResult SendTarea(string titulo, string descripcion, DateTime fecha){
         BD miBd = new BD();
         bool finalizada = false;
         int? idUsuarioInSession = HttpContext.Session.GetInt32("usuarioId");
@@ -43,9 +45,15 @@ public class HomeController : Controller
         return View("Tasks");
     }
 
-    public IActionResult EditarTarea(Tarea tarea, string titulo, string descripcion, DateTime fecha, bool finalizada){
+    public IActionResult EditTarea(int id){
         BD miBd = new BD();
-        miBd.UpdateTarea(tarea, titulo, descripcion, fecha, finalizada);
+        Tarea tarea = miBd.BuscarTareaPorId(id);
+        ViewBag.tarea = tarea;
+        return View();
+    }
+    public IActionResult SendEditTarea(int id, string titulo, string descripcion, DateTime fecha, bool finalizada){
+        BD miBd = new BD();
+        miBd.UpdateTarea(id, titulo, descripcion, fecha, finalizada);
 
         return View("Tasks");
     }
@@ -57,9 +65,9 @@ public class HomeController : Controller
         return View("Tasks");
     }
 
-    public IActionResult FinalizarTarea(int id){
+    public IActionResult CambiarEstado(int id){
         BD miBd = new BD();
-        miBd.FinalizarTarea(id);
+        miBd.CambiarEstado(id);
 
         return View("Tasks");
     }

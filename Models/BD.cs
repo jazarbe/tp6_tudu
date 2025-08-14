@@ -30,17 +30,16 @@ public class BD{
         }
         return tareaBuscada;
     }
-    public void UpdateTarea(Tarea tareaBuscada, string titulo, string descripcion, DateTime fecha, bool finalizada){
-        int idBuscado = tareaBuscada.id;
+    public void UpdateTarea(int idBuscado, string titulo, string descripcion, DateTime fecha, bool finalizada){
         using(SqlConnection connection = new SqlConnection(_connectionString)){
             string query = "UPDATE Tareas SET titulo = @ptitulo, descripcion = @pdescripcion, fecha = @pfecha, finalizada = @pfinalizada WHERE id = @pIdBuscado";
-            tareaBuscada = connection.QueryFirstOrDefault<Tarea>(query, new {pIdBuscado = idBuscado});
+            connection.QueryFirstOrDefault<Tarea>(query, new {pIdBuscado = idBuscado});
         }
     }
-    public void FinalizarTarea(int idBuscado){
+    public void CambiarEstado(int idBuscado){
         Tarea tareaBuscada = null;
         using(SqlConnection connection = new SqlConnection(_connectionString)){
-            string query = "UPDATE Tareas SET finalizada = true WHERE id = @pIdBuscado";
+            string query = "UPDATE Tareas SET finalizada = NOT finalizada WHERE id = @pIdBuscado";
             tareaBuscada = connection.QueryFirstOrDefault<Tarea>(query, new {pIdBuscado = idBuscado});
         }
     }

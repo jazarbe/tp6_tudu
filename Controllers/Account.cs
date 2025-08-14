@@ -39,7 +39,7 @@ public class Account  : Controller
     public IActionResult LogOut()
     {
         HttpContext.Session.Clear();
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Home");
     }
     public IActionResult OlvidePassword()
     {
