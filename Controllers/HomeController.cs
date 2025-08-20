@@ -69,7 +69,11 @@ public class HomeController : Controller
     public IActionResult CambiarEstado(int id){
         BD miBd = new BD();
         miBd.CambiarEstado(id);
-
-        return View("Tasks", new{ idSolicitado =  id });
+        int? idUsuarioInSession = HttpContext.Session.GetInt32("usuarioId");
+        if (idUsuarioInSession == null)
+        {
+            return RedirectToAction("Index");
+        }
+        return RedirectToAction("Tasks", new{ idSolicitado =  idUsuarioInSession });
     }
 }

@@ -36,11 +36,12 @@ public class BD{
             connection.QueryFirstOrDefault<Tarea>(query, new { pIdBuscado = idBuscado, ptitulo = titulo, pdescripcion = descripcion, pfecha = fecha });
         }
     }
-    public void CambiarEstado(int idBuscado){
-        Tarea tareaBuscada = null;
-        using(SqlConnection connection = new SqlConnection(_connectionString)){
+    public void CambiarEstado(int idBuscado)
+    {
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        {
             string query = "UPDATE Tareas SET finalizada = CASE WHEN finalizada = 1 THEN 0 ELSE 1 END WHERE id = @pIdBuscado";
-            tareaBuscada = connection.QueryFirstOrDefault<Tarea>(query, new {pIdBuscado = idBuscado});
+            connection.Execute(query, new { pIdBuscado = idBuscado });
         }
     }
     public void DeleteTarea(Tarea tareaBuscada){
