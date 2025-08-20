@@ -6,6 +6,7 @@
     <div class="extra">
         <form action='@Url.Action("SendEditTarea", "Home")' method="post" enctype="multipart/form-data">
         <h1>Editar Tarea</h1>
+        <input type="hidden" name="id" value="@ViewBag.tarea.id" />
             <div class="campo">
                 <label>Titulo</label>
                 <input type="text" name="titulo" value="@ViewBag.tarea.titulo" autocomplete="off" required/>
@@ -16,7 +17,7 @@
             </div>
             <div class="campo">
                 <label>Fecha</label>
-                <input type="date" name="fecha" value="@ViewBag.tarea.fecha" autocomplete="off" required/>
+                <input type="date" name="fecha" value="@(((DateTime)ViewBag.tarea.fecha).ToString("yyyy-MM-dd"))" autocomplete="off" required />
             </div>
             <button type="submit">Confirmar Edición</button>
             <a class="volverBtn" href='@Url.Action("Index", "Home")'>Volver</a>

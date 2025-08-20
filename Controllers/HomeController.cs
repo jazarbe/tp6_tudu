@@ -53,9 +53,10 @@ public class HomeController : Controller
     }
     public IActionResult SendEditTarea(int id, string titulo, string descripcion, DateTime fecha, bool finalizada){
         BD miBd = new BD();
+        Tarea tarea = miBd.BuscarTareaPorId(id);
         miBd.UpdateTarea(id, titulo, descripcion, fecha, finalizada);
+        return RedirectToAction("Tasks", new { idSolicitado = tarea.idUsuario });
 
-        return RedirectToAction("Tasks", new { idSolicitado = id });
     }
 
     public IActionResult EliminarTarea(Tarea tarea){
@@ -69,6 +70,6 @@ public class HomeController : Controller
         BD miBd = new BD();
         miBd.CambiarEstado(id);
 
-        return View("Tasks");
+        return View("Tasks", new{ idSolicitado =  id });
     }
 }

@@ -39,7 +39,7 @@ public class BD{
     public void CambiarEstado(int idBuscado){
         Tarea tareaBuscada = null;
         using(SqlConnection connection = new SqlConnection(_connectionString)){
-            string query = "UPDATE Tareas SET finalizada = NOT finalizada WHERE id = @pIdBuscado";
+            string query = "UPDATE Tareas SET finalizada = CASE WHEN finalizada = 1 THEN 0 ELSE 1 END WHERE id = @pIdBuscado";
             tareaBuscada = connection.QueryFirstOrDefault<Tarea>(query, new {pIdBuscado = idBuscado});
         }
     }
