@@ -4,7 +4,7 @@ html {
   --color2: #C1121F;
   --color3: #FDF0D5;
   --color4: #003049;
-  --color5: #669BBC;
+  --color5: #B2AC88;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -91,7 +91,7 @@ main form{
 
 main form a {
   font-size: 1.5rem;
-  color: var(--color5);
+  color: var(--color4);
 }
 
 main h2{
@@ -150,10 +150,6 @@ form input:hover, button[type="submit"]:hover{
 
 .extra input[type="number"]{
   width: 30%;
-}
-
-.volverBtn{
-  
 }
 
 form{
@@ -228,4 +224,37 @@ form h1{
 .tarea div{
   border: 2px solid var(--color1);
   border-radius: 10px;
+  padding: 0.2%;
+}
+
+.noFin{
+  background-color: #B2AC88;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color1);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+  
+input[type="checkbox"]:checked {
+  background-color: var(--color1);
+}
+  
+input[type="checkbox"]:checked::before {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 14px;
+  color: var(--color3);
 }

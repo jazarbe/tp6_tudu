@@ -63,7 +63,7 @@ public class HomeController : Controller
         BD miBd = new BD();
         miBd.DeleteTarea(tarea);
 
-        return View("Tasks");
+        return RedirectToAction("Tasks", new { idSolicitado = tarea.idUsuario });
     }
 
     public IActionResult CambiarEstado(int id){
